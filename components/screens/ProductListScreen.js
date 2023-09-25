@@ -18,12 +18,13 @@ const products = [
     {id: 12, title: 'Item 12', price: '80$', image: '../../assets/Products/sport-shoes-domino-164_6wVEHfI-unsplash.jpg'},
     {id: 13, title: 'Item 13', price: '15$', image: '../../assets/Products/stool-ruslan-bardash-4kTbAMRAHtQ-unsplash.jpg'},
     {id: 14, title: 'Item 14', price: '150$', image: '../../assets/Products/watch-rachit-tank-2cFZ_FB08UM-unsplash.jpg'},
-]; 
+];
+
 
 /* contentContainerStyle={{flex: 1, alignItems: 'center', justifyContent: 'center'}}*/    
 
 
-const ITEM_WIDTH = Dimensions.get('window').width / 3;
+const ITEM_WIDTH = Dimensions.get('window').width / 3.5;
 
 
 function ProductListScreen({navigation}) {
@@ -36,13 +37,13 @@ function ProductListScreen({navigation}) {
                 keyExtractor={item => item.id.toString()}
                 renderItem={({item}) => (
                     <TouchableOpacity
-                        style={{width: ITEM_WIDTH, padding: 5 }}
+                        style={{width: ITEM_WIDTH, padding: 5, backgroundColor: '#fff', borderRadius: 8, margin: 10}}
                         onPress={() => navigation.navigate('ProductDetail', {
                             product: item, 
                             imageUrl: `https://picsum.photos/${item.id*100}`
                         })}
                     >
-                        <Image source={{uri: `https://picsum.photos/${item.id*100}`}} style={{margin: 5, marginTop: 20, width: ITEM_WIDTH - 20, height: ITEM_WIDTH - 20}} />
+                        <Image source={{uri: `https://picsum.photos/${item.id*100}`}} style={{margin: 5, marginTop: 20, borderRadius: 8, width: ITEM_WIDTH - 20, height: ITEM_WIDTH - 20}} />
 
                         <View style={{flexDirection: 'row', alignItems:'center',justifyContent: 'space-between', width: '100%'}}>
                             <Text style={{ marginLeft: 5 }}>{item.title}</Text>

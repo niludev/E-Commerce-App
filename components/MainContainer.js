@@ -8,6 +8,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import HomeScreen from './screens/HomeScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ShoppingCard from './screens/ShoppingCard';
+import { CartProvider } from './CartContext';
 
 // Screen names
 const HomeName = 'Home';
@@ -19,39 +20,41 @@ const Tab = createBottomTabNavigator();
 
 export default function MainContainer() {
     return (
-        <NavigationContainer>
-            <Tab.Navigator
-            initialRouteName={HomeName}
-            screenOptions={({route}) => ({
-                tabBarIcon: ({focused, color, size}) => {
-                    let iconName;
-                    let rn = route.name;
+        <CartProvider>
+            <NavigationContainer>
+                <Tab.Navigator
+                initialRouteName={HomeName}
+                screenOptions={({route}) => ({
+                    tabBarIcon: ({focused, color, size}) => {
+                        let iconName;
+                        let rn = route.name;
 
-                    if (rn === HomeName) {
-                        iconName = focused ? 'home' : 'home-outline';
-                    } else if (rn === ProductLisName) {
-                        iconName = focused ? 'list' : 'list-outline';
-                    } else if (rn === ShoppingCardName) {
-                        iconName = focused ? 'cart' : 'cart-outline';
-                    }
+                        if (rn === HomeName) {
+                            iconName = focused ? 'home' : 'home-outline';
+                        } else if (rn === ProductLisName) {
+                            iconName = focused ? 'list' : 'list-outline';
+                        } else if (rn === ShoppingCardName) {
+                            iconName = focused ? 'cart' : 'cart-outline';
+                        }
 
-                    return <Ionicons name={iconName} size={size} color={color}/>
-                },
+                        return <Ionicons name={iconName} size={size} color={color}/>
+                    },
 
-                tabBarActiveTintColor: 'tomato',
-                tabBarInactiveTintColor: 'grey',
-                tabBarLabelStyle: {paddingBottom: 5},
-                tabBarStyle: {padding: 4}
-            })}
+                    tabBarActiveTintColor: 'tomato',
+                    tabBarInactiveTintColor: 'grey',
+                    tabBarLabelStyle: {paddingBottom: 5},
+                    tabBarStyle: {padding: 4}
+                })}
 
-            >
+                >
 
 
-            <Tab.Screen name={HomeName} component={HomeScreen} />
-            <Tab.Screen name={ProductLisName} component={ProductListScreen} />
-            <Tab.Screen name={ShoppingCardName} component={ShoppingCard} />
+                <Tab.Screen name={HomeName} component={HomeScreen} />
+                <Tab.Screen name={ProductLisName} component={ProductListScreen} />
+                <Tab.Screen name={ShoppingCardName} component={ShoppingCard} />
 
-            </Tab.Navigator>
-        </NavigationContainer>
+                </Tab.Navigator>
+            </NavigationContainer>
+        </CartProvider>
     )
 }
